@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-sampleapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs-sampleapp
+  template:
+    metadata:
+      labels:
+        app: nodejs-sampleapp
+    spec:
+      containers:
+      - name: nodejs-sampleapp
+        image: us-central1-docker.pkg.dev/feisty-filament-335909/nodejs-sampleapp-repo/nodejs-sampleapp-gke:latest
+        ports:
+        - containerPort: 3000
+        env:
+          - name: PORT
+            value: "3000"
